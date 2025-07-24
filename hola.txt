@@ -1,0 +1,13 @@
+Section "InputClass"
+    Identifier "touchpad catchall"
+    Driver "synaptics"
+    MatchIsTouchpad "on"
+    Option "TapButton1" "1"
+    Option "VertEdgeScroll" "on"
+    Option "HorizEdgeScroll" "on"
+    Option "VertTwoFingerScroll" "on"
+    Option "HorizTwoFingerScroll" "on"
+    Option "PalmDetect" "on"
+    Option "FingerLow" "30"
+    Option "FingerHigh" "50"
+EndSection

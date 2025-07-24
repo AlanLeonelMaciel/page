@@ -1,1 +1,83 @@
-<h1>Marcelo trolazo</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ruleta de Bares</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      background: #f0f8ff;
+    }
+
+    input, button, textarea {
+      padding: 10px;
+      margin: 5px;
+      font-size: 1em;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #0077cc;
+    }
+
+    #wheel {
+      margin: 20px auto;
+      width: 250px;
+      height: 250px;
+      border: 10px solid #ccc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2em;
+      background: linear-gradient(45deg, #ffcc70, #f857a6);
+      color: white;
+      animation: none;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(1440deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Ruleta de Bares</h1>
+  <p>Ingresá los nombres de bares separados por coma:</p>
+
+  <textarea id="barsInput" rows="4" cols="40" placeholder="Ej: Bar A, Bar B, Bar C"></textarea><br>
+  <button onclick="spinWheel()">Girar Ruleta</button>
+
+  <div id="wheel">🎉</div>
+  <div id="result"></div>
+
+  <script>
+    function spinWheel() {
+      const input = document.getElementById("barsInput").value;
+      const options = input.split(",").map(b => b.trim()).filter(b => b);
+
+      if (options.length === 0) {
+        alert("Ingresá al menos un bar.");
+        return;
+      }
+
+      // Animación de ruleta
+      const wheel = document.getElementById("wheel");
+      wheel.style.animation = "spin 2s ease-out";
+
+      setTimeout(() => {
+        const chosen = options[Math.floor(Math.random() * options.length)];
+        wheel.style.animation = "none";
+        document.getElementById("wheel").textContent = chosen;
+        document.getElementById("result").textContent = `¡Vamos a: ${chosen}! 🍻`;
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
